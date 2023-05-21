@@ -8,6 +8,10 @@ body {
     background-color: #ff9b70;
 }
 
+.carousel-item img {
+    background-color: white
+}
+
 
 /* .container {
     background-color: #ffffff;
