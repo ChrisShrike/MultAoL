@@ -9,7 +9,8 @@ body {
 }
 
 .carousel-item img {
-    background-color: white
+    background-color: white;
+    padding: 10px 0 70px 0;
 }
 
 
