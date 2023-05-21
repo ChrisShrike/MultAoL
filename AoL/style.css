@@ -67,6 +67,13 @@ img {
     text-align: center;
 }
 
+#workout {
+    color: #ffffff;
+    font-size: 25px;
+    /* font-weight: bolder; */
+    text-align: center;
+}
+
 .content-slide .number-slide {
     color: #ff9b70;
     font-size: 12px;

@@ -8,24 +8,28 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
+    <!-- <nav>
         <div class="left">
             <img src="" alt="">
         </div>
-    </nav>
+    </nav> -->
+
+    <section>
+        <h1 id="workout"></h1>
+    </section>
 
     <div class="container">
         <div class="content-slide">
             <div class="imgslide fade">
                 <div class="number-slide">1 / 2</div>
                 <img src="img/ex1.png" alt="">
-                <div class="text">JOGGING</div>
+                <!-- <div class="text">JOGGING</div> -->
             </div>
 
             <div class="imgslide fade">
                 <div class="number-slide">2 / 2</div>
                 <img src="img/ex2.png" alt="">
-                <div class="text">YOGA</div>
+                <!-- <div class="text">YOGA</div> -->
             </div>
 
             <a class="prev" onClick="nextslide(-1)">
@@ -38,6 +42,7 @@
     </div>
     
     <script>
+        var workouts = ['JOGGING', 'YOGA']
         var slideIndex = 1;
             showSlide(slideIndex);
         
@@ -61,7 +66,11 @@
                 slides[i].style.display = "none";
             }
 
+
             slides[slideIndex - 1].style.display = "block";
+            var workoutTitle = document.getElementById("workout")
+            
+            workoutTitle.innerText = workouts[slideIndex - 1];
         }
     </script>
 
