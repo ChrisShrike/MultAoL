@@ -5,7 +5,7 @@
 body {
     margin: 0;
     padding: 0;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
 }
 
 body {
@@ -13,6 +13,29 @@ body {
     margin: 0;
     /* background-color: #ff9b70; */
     background-color: #ffffff;
+}
+
+#char-select {
+    display: flex;
+    height: 30vh;
+    justify-content: center;
+    align-items: baseline;
+    gap: 1em;
+}
+
+.workout-select {
+    transform: skew(-5deg);
+    height: 300px;  
+    /* width: 300px; */
+}
+
+.workout-select img {
+    width: 100px;
+    height: 300px;
+}
+
+#workout-info {
+    height: 80vh;
 }
 
 .carousel-item img {
