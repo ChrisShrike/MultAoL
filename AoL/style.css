@@ -26,12 +26,16 @@ body {
 .workout-select {
     transform: skew(-5deg);
     height: 100%;  
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
     /* width: 300px; */
 }
 
 .workout-select img {
     width: 100px;
     height: 100%;
+    background-size: contain;
 }
 
 #workout-info {

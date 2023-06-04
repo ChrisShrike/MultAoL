@@ -1,7 +1,11 @@
 function loadWorkoutsSelection() {
-    var charSelect = document.getElementById("char-select")
+    let charSelect = document.getElementById("char-select");
+    let workoutSelect = document.getElementsByClassName("workout-select");
+    let initialIndex = (workoutSelect.length - 1) / 2;
 
-    console.log((charSelect.children.length - 1) /2);
+    console.log(initialIndex);
+    workoutSelect[initialIndex].style = "height: 250px;  width: 300px;";
+    // charSelect.children[(charSelect.children.length - 1) / 2].children[0].style = "height: 250px;  width: 300px;";
 
     console.log(charSelect);
     // charSelect.children[(charSelect.children.length - 1) / 2].style = "height: 300px;  width: 300px;";
@@ -14,19 +18,49 @@ function loadWorkoutsSelection() {
         // }
     // });
 
-    for (let elem of charSelect.children) {
-        elem.onmouseenter = function(e) {
-            e.target.style = "height: 100%;  width: 300px;";
-            e.target.children[0].style = "height: 100%; width: 300px;";
-            document.getElementById("workout-info").innerHTML += "<h1>fdsfdsfd</h1>";
+    nextSelectBtn = document.getElementById("next-btn");
+    prevSelectBtn = document.getElementById("previous-btn");
+
+    nextSelectBtn.onclick = function(e) {
+        workoutSelect[initialIndex].style = "";
+        workoutSelect[initialIndex].children[0].style = "";
+
+        if (initialIndex >= workoutSelect.length - 1) {
+            initialIndex = 0;
+        } else {
+            initialIndex++;
+        }
+        workoutSelect[initialIndex].style = "height: 250px;  width: 300px;";
+        workoutSelect[initialIndex].children[0].style = "height: 250px;  width: 300px;";
+    }
+
+    prevSelectBtn.onclick = function(e) {
+        workoutSelect[initialIndex].style = "";
+        workoutSelect[initialIndex].children[0].style = "";
+
+        if (initialIndex <= 0) {
+            initialIndex = workoutSelect.length - 1;
+        } else {
+            initialIndex--;
         }
 
-        elem.onmouseleave = function(e) {
-            e.target.style = "";
-            e.target.children[0].style = "";
-            document.getElementById("workout-info").innerHTML = "";
-        }
+        workoutSelect[initialIndex].style = "height: 250px;  width: 300px;";
+        workoutSelect[initialIndex].children[0].style = "height: 250px;  width: 300px;";
+
     }
+    // for (let elem of charSelect.children) {
+    //     elem.onmouseenter = function(e) {
+    //         e.target.style = "height: 100%;  width: 300px;";
+    //         e.target.children[0].style = "height: 100%; width: 300px;";
+    //         document.getElementById("workout-info").innerHTML += "<h1>fdsfdsfd</h1>";
+    //     }
+
+    //     elem.onmouseleave = function(e) {
+    //         e.target.style = "";
+    //         e.target.children[0].style = "";
+    //         document.getElementById("workout-info").innerHTML = "";
+    //     }
+    // }
 }
 
 // function focusWorkoutSelection(index) {
