@@ -16,17 +16,15 @@ function loadWorkoutsSelection() {
 
     for (let elem of charSelect.children) {
         elem.onmouseenter = function(e) {
-            e.target.style = "height: 300px;  width: 300px;";
-            e.target.children[0].style = "height: 300px; width: 300px;";
-            // console.log(e);
-            // e.children[0].style = "height: 300px; width: 300px;";
+            e.target.style = "height: 100%;  width: 300px;";
+            e.target.children[0].style = "height: 100%; width: 300px;";
+            document.getElementById("workout-info").innerHTML += "<h1>fdsfdsfd</h1>";
         }
 
         elem.onmouseleave = function(e) {
             e.target.style = "";
             e.target.children[0].style = "";
-            // console.log(e);
-            // e.children[0].style = "height: 300px; width: 300px;";
+            document.getElementById("workout-info").innerHTML = "";
         }
     }
 }
