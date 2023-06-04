@@ -5,11 +5,11 @@ let maxIndex = 3;
 let profileWidth = 110;
 $(document).ready(function() {
     console.log("ready!");
-    $('.profile').on('click', function() {
-        // $(this).toggleClass("moveRight");
-        // moveProfile();
+    // $('.profile').on('click', function() {
+    //     // $(this).toggleClass("moveRight");
+    //     // moveProfile();
 
-    })
+    // })
 
 
     $('#toggleMove').on('click', function() {
@@ -47,73 +47,54 @@ $(document).ready(function() {
         }
     }
 
+    function createStartAndEndProfile() {
+        $(".profile-select").append($('.profile[data-id="' + 0 + '"]').clone());
+        $(".profile-select").prepend($('.profile[data-id="' + maxIndex + '"]').clone());
+        // jQuery.data($('.profile'), "blah", "hello");
+        // $('.profile').data('position', 'Something');
+    }
+
+    createStartAndEndProfile();
+
     function moveProfileRight() {
-        // setInterval();
-        // currentIndex--;
         decrementIndex();
         console.log("Animate Right");
+
         $('.profile').animate({
-            // opacity: ,
-            right: "+=" + 110,
-            // order: index + 1,
-            // left: "+=200",
-            // transform: 'translate(100% , 0) skew(20 deg)',
-        }, 0);
-        $('.profile').css("right", "-=110");
-        for (let index = 0; index <= maxIndex; index++) {
-            // addStart($('.profile[data-id="' + index + '"]').clone());
-            // $("profile-select").prepend("AAA");
-            if ((currentIndex - index) == 0) {
-                console.log(index);
-                // addStart($('.profile[data-id="' + index + '"]').clone());
-                // removeElement($('.profile[data-id="' + index + '"]'));
+                right: "-=" + 110,
+            }, 1000, "swing",
+            function() {
+                console.log($(this).index());
+                $(this).css("right", 160);
 
-            }
-            $('.profile[data-id="' + index + '"]').animate({
-                    // opacity: ,
-                    right: "-=" + 110,
-                    // order: index + 1,
-                    // left: "+=200",
-                    // transform: 'translate(100% , 0) skew(20 deg)',
-                }, 500,
-                function() {
-                    // console.log((currentIndex + selectedIndex) % (maxIndex + 1));
-                    if ((currentIndex - index) == 0) {
-                        // addStart($('.profile[data-id="' + index + '"]').clone());
-                        removeElement($(this));
-                    }
-                    // const sleep = ms => new Promise(r => setTimeout(r, 500));
-                    // $(this).remove();
-                    // removeElement($(this));
-                    // Animation complete.
-                    // console.log("Animate done");
-                    // console.log(($('.profile[data-id="' + index + '"]').width() + 10));
 
-                });
-        }
+                if ($(this).index() === maxIndex + 3) {
+                    removeElement($(this));
+                }
+
+                if ($(this).index() === maxIndex) {
+                    addStart($(this));
+                }
+
+
+            });
     }
 
     async function removeElement($jqueryObject) {
-        await sleep(1000);
+        // await sleep(1000);
         $jqueryObject.remove();
     }
 
     function addStart($profile) {
-        $profile.css("right", 50);
-        $(".profile-select").prepend($profile);
-        console.log($profile);
-        // $(".profile-select").prepend("<p>asd</p>");
-        // $(".profile-select").append($profile);
-        // $(".profile-select").append($profile);
+        $newProfile = $profile.clone();
+        $newProfile.css("right", 160);
+        $(".profile-select").prepend($newProfile);
     }
 
     function addEnd($profile) {
-        $profile.css("right", (profileWidth * maxIndex) - 50);
-        $(".profile-select").append($profile);
-        console.log($profile);
-        // $(".profile-select").prepend("<p>asd</p>");
-        // $(".profile-select").append($profile);
-        // $(".profile-select").append($profile);
+        $newProfile = $profile.clone();
+        $newProfile.css("right", 50);
+        $(".profile-select").append($newProfile);
     }
 
     function moveProfileLeft() {
@@ -121,32 +102,29 @@ $(document).ready(function() {
         // currentIndex++;
         incrementIndex();
 
+        let deleted = true;
+
         console.log("Animate Left");
-        // $('.profile').animate({
-        //     // opacity: 0.95,
-        //     // right: "+=200",
-        //     right: "+=" + $('.profile[data-id="' + index + '"]').width(),
+        $('.profile').animate({
+                right: "+=" + 110,
+            }, 1000, "swing",
+            function() {
+                $('.profile').css("right", 160);
 
-        //     // transform: 'translate(100% , 0) skew(20 deg)',
-        // }, 500, function() {
-        //     // Animation complete.
-        //     console.log("Animate done");
-        // });
+                console.log(currentIndex);
+                // console.log($(this).index() === 3);
 
-        for (let index = 0; index <= maxIndex; index++) {
-            $('.profile[data-id="' + index + '"]').animate({
-                    // opacity: ,
-                    right: "+=" + 110,
-                    // right: "+=" + ($('.profile[data-id="' + index + '"]').width() + 10),
-                    // order: index + 1,
-                    // left: "+=200",
-                    // transform: 'translate(100% , 0) skew(20 deg)',
-                }, 500,
-                function() {
-                    // Animation complete.
-                    // console.log(($('.profile[data-id="' + index + '"]').width() + 10));
-                });
-        }
+                if ($(this).index() === 0 && deleted) {
+                    deleted = false;
+                    removeElement($(this));
+                }
+
+                if ($(this).index() === 1) {
+                    addEnd($(this));
+                }
+
+
+            });
     }
 
     function adjustProfile() {

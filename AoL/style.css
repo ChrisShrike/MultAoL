@@ -51,14 +51,17 @@ body {
 .profile {
     transform: skew(20deg);
     /* background: #555; */
-    transition: all 0.5s ease;
     cursor: pointer;
     position: relative;
     /* padding: 0 30px; */
     width: 100px;
     height: 200px;
-    right: 50px;
+    right: 160px;
     z-index: 1;
+}
+
+.profile-transition {
+    /* transition: all 0.5s ease; */
 }
 
 .profile a {
