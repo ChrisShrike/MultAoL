@@ -3,6 +3,12 @@ let currentIndex = 0;
 let selectedIndex = 2;
 let maxIndex = 3;
 let profileWidth = 110;
+let starterRight = 160;
+let defaultWidth = 100;
+let defaultHeight = 200;
+let selectedMultiplier = 1.5;
+
+let disableClick = 0;
 $(document).ready(function() {
     console.log("ready!");
     // $('.profile').on('click', function() {
@@ -56,75 +62,165 @@ $(document).ready(function() {
 
     createStartAndEndProfile();
 
+    function animateRight(){
+        let triggerAnimate = true;
+        $('.profile a img').animate({
+            width: defaultWidth,
+            height: defaultHeight,
+        }, 500, "swing",
+        function() {
+
+            if (triggerAnimate){
+                triggerAnimate = false;
+                $('.profile').animate({
+                    right: "-=" + profileWidth,
+                }, 500, "swing",
+                function() {
+                    // console.log($(this).index());
+                    $(this).css("right", starterRight);
+                    
+                    if ($(this).index() === (selectedIndex)){
+
+                        $(this).children("a").children("img").animate({
+                            width: defaultHeight*selectedMultiplier,
+                            height: defaultWidth*selectedMultiplier,
+                        }, 500, "swing",
+                        function() {
+                            disableClick = false;
+                            console.log(disableClick);
+                            // triggerAnimate = true;
+                        });
+                    }
+    
+                    if ($(this).index() === maxIndex + 3) {
+                        removeElement($(this));
+                    }
+    
+                    if ($(this).index() === maxIndex) {
+                        addStart($(this));
+                    }
+                    
+    
+                });
+            }
+        });
+    }
+
+    function animateLeft(){
+        let triggerAnimate = true;
+        let deleted = true;
+
+        $('.profile a img').animate({
+            width: defaultWidth,
+            height: defaultHeight,
+        }, 500, "swing",
+        function() {
+
+            if (triggerAnimate){
+                triggerAnimate = false;
+                $('.profile').animate({
+                    right: "+=" + profileWidth,
+                }, 500, "swing",
+                function() {
+                    // console.log($(this).index());
+                    $(this).css("right", starterRight);
+                    
+                    if ($(this).index() === (selectedIndex + 1)){
+
+                        $(this).children("a").children("img").animate({
+                            width: defaultWidth*selectedMultiplier,
+                            height: defaultHeight*selectedMultiplier,
+                        }, 500, "swing",
+                        function() {
+                            disableClick = false;
+                            console.log(disableClick);
+                            // triggerAnimate = true;
+                        });
+                    }
+    
+                    if ($(this).index() === 0 && deleted) {
+                        deleted = false;
+                        removeElement($(this));
+                    }
+    
+                    if ($(this).index() === 1) {
+                        addEnd($(this));
+                    }
+                    
+    
+                });
+            }
+        });
+    }
+
     function moveProfileRight() {
-        decrementIndex();
-        console.log("Animate Right");
-
-        $('.profile').animate({
-                right: "-=" + 110,
-            }, 1000, "swing",
-            function() {
-                console.log($(this).index());
-                $(this).css("right", 160);
+        if (!disableClick){
+            disableClick = true;
+            decrementIndex();
+            console.log("Animate Right");
+            animateRight();
 
 
-                if ($(this).index() === maxIndex + 3) {
-                    removeElement($(this));
-                }
 
-                if ($(this).index() === maxIndex) {
-                    addStart($(this));
-                }
-
-
-            });
+        }
     }
 
     async function removeElement($jqueryObject) {
-        // await sleep(1000);
+        // await sleep(500);
         $jqueryObject.remove();
     }
 
     function addStart($profile) {
         $newProfile = $profile.clone();
-        $newProfile.css("right", 160);
+        $newProfile.css("right", starterRight);
         $(".profile-select").prepend($newProfile);
     }
 
     function addEnd($profile) {
         $newProfile = $profile.clone();
-        $newProfile.css("right", 50);
+        $newProfile.css("right", starterRight);
         $(".profile-select").append($newProfile);
     }
+
+    // function selectedProfile($profile){
+    //     if ($(this).index() === selectedIndex){
+
+    //     }
+    // }
 
     function moveProfileLeft() {
         // setInterval();
         // currentIndex++;
-        incrementIndex();
+        if (!disableClick){
+            disableClick = true;
+            incrementIndex();
+    
+    
+            console.log("Animate Left");
+            animateLeft();
+            // $('.profile').animate({
+            //         right: "+=" + profileWidth,
+            //     }, 500, "swing",
+            //     function() {
+            //         $('.profile').css("right", starterRight);
+    
+            //         // console.log(currentIndex);
+            //         // console.log($(this).index() === 3);
+    
+            //         if ($(this).index() === 0 && deleted) {
+            //             deleted = false;
+            //             removeElement($(this));
+            //         }
+    
+            //         if ($(this).index() === 1) {
+            //             addEnd($(this));
+            //         }
+                    
+            //         disableClick = false;
+    
+            //     });
+        }
 
-        let deleted = true;
-
-        console.log("Animate Left");
-        $('.profile').animate({
-                right: "+=" + 110,
-            }, 1000, "swing",
-            function() {
-                $('.profile').css("right", 160);
-
-                console.log(currentIndex);
-                // console.log($(this).index() === 3);
-
-                if ($(this).index() === 0 && deleted) {
-                    deleted = false;
-                    removeElement($(this));
-                }
-
-                if ($(this).index() === 1) {
-                    addEnd($(this));
-                }
-
-
-            });
     }
 
     function adjustProfile() {
