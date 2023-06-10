@@ -1,14 +1,26 @@
 let currentIndex = 0;
-// $()
-let selectedIndex = 2;
-let maxIndex = 3;
-let profileWidth = 110;
-let starterRight = 160;
-let defaultWidth = 100;
-let defaultHeight = 200;
-let selectedMultiplier = 1.5;
+const selectedIndex = 2;
+const maxIndex = 3;
+const profileWidth = 110;
+const starterRight = 160;
+const defaultWidth = 100;
+const defaultHeight = 200;
+const selectedMultiplier = 1.5;
 
-let disableClick = 0;
+
+let disableClick = false;
+
+function getContent(index) {
+    var contents = document.getElementsByClassName("content");
+    for(let i = 0; i <= maxIndex; ++i) {
+        contents[i].style = "display: none";
+    }
+
+    contents[index].style = "display: initial";
+}
+
+// window.onload = getContent;
+
 $(document).ready(function() {
     console.log("ready!");
     // $('.profile').on('click', function() {
@@ -16,7 +28,6 @@ $(document).ready(function() {
     //     // moveProfile();
 
     // })
-
 
     $('#toggleMove').on('click', function() {
         // $('.profile').toggleClass("moveRight");
@@ -69,7 +80,6 @@ $(document).ready(function() {
             height: defaultHeight,
         }, 500, "swing",
         function() {
-
             if (triggerAnimate){
                 triggerAnimate = false;
                 $('.profile').animate({
@@ -82,8 +92,8 @@ $(document).ready(function() {
                     if ($(this).index() === (selectedIndex)){
 
                         $(this).children("a").children("img").animate({
-                            width: defaultHeight*selectedMultiplier,
-                            height: defaultWidth*selectedMultiplier,
+                            width: defaultHeight * selectedMultiplier,
+                            height: defaultWidth * selectedMultiplier,
                         }, 500, "swing",
                         function() {
                             disableClick = false;
@@ -108,7 +118,7 @@ $(document).ready(function() {
 
     function animateLeft(){
         let triggerAnimate = true;
-        let deleted = true;
+        let shouldDelete = true;
 
         $('.profile a img').animate({
             width: defaultWidth,
@@ -128,8 +138,8 @@ $(document).ready(function() {
                     if ($(this).index() === (selectedIndex + 1)){
 
                         $(this).children("a").children("img").animate({
-                            width: defaultWidth*selectedMultiplier,
-                            height: defaultHeight*selectedMultiplier,
+                            width: defaultWidth * selectedMultiplier,
+                            height: defaultHeight * selectedMultiplier,
                         }, 500, "swing",
                         function() {
                             disableClick = false;
@@ -138,8 +148,8 @@ $(document).ready(function() {
                         });
                     }
     
-                    if ($(this).index() === 0 && deleted) {
-                        deleted = false;
+                    if ($(this).index() === 0 && shouldDelete) {
+                        shouldDelete = false;
                         removeElement($(this));
                     }
     
@@ -159,9 +169,7 @@ $(document).ready(function() {
             decrementIndex();
             console.log("Animate Right");
             animateRight();
-
-
-
+            getContent(currentIndex);
         }
     }
 
@@ -198,6 +206,7 @@ $(document).ready(function() {
     
             console.log("Animate Left");
             animateLeft();
+            getContent(currentIndex);
             // $('.profile').animate({
             //         right: "+=" + profileWidth,
             //     }, 500, "swing",
