@@ -32,7 +32,7 @@ p {
     gap: 1em;
 }
 
-.workout-select {
+.workout-select, .temp-animation {
     transform: skew(-5deg);
     height: 70%;  
     border-color: black;
@@ -41,7 +41,7 @@ p {
     /* width: 300px; */
 }
 
-.workout-select img {
+.workout-select img, .temp-animation img {
     width: 100px;
     height: 100%;
     background-size: contain;

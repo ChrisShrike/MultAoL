@@ -103,7 +103,7 @@ function animateSlider(workoutSelect, currentIndex) {
             { transform: "translateX(100px)", height: "100%", right: "100px", position: "relative" },
             { height: "90%" },
             { height: "80%" },
-            { height: "70%", right: "120px", position: "relative" },
+            { height: "70%", right: "70px", position: "relative" },
         ],
         { duration: ANIMATION_DURATION }
     );
@@ -112,7 +112,7 @@ function animateSlider(workoutSelect, currentIndex) {
         { transform: "translateX(100px)", height: "70%", position: "relative", right: "100px" },
         { height: "80%" },
         { height: "90%" },
-        { height: "100%", position: "relative", right: "120px"},
+        { height: "100%", position: "relative", right: "70px"},
     ], { duration: ANIMATION_DURATION});
 
     workoutSelect[0].animate(
@@ -120,12 +120,25 @@ function animateSlider(workoutSelect, currentIndex) {
             { transform: "translateX(100px)", opacity: 1, right: "100px", position: "relative"},
             { opacity: 0.5 },
             { opacity: 0.25 },
-            { opacity: 0, right: "100px", position: "relative" },
+            { opacity: 0, right: "70px", position: "relative" },
         ],
         { duration: ANIMATION_DURATION }
     );
 
+    let tempAnimation = document.getElementsByClassName("temp-animation")[0]
+    tempAnimation.innerHTML = `<img src="${IMAGES[(currentIndex + 2) % IMAGES.length]}" alt="workout"></img>`
+    tempAnimation.style = "display: initial";
+    tempAnimation.animate([
+        {transform: "translateX(100px)", display: "initial", opacity: 0.1, right: "100px", position: "relative"},
+        {opacity: 0.25},
+        {opacity: 0.5},
+        {opacity: 1, right: "70px", position: "relative", display: "none"},
+    ],
+    {duration: ANIMATION_DURATION});
 
+    Promise.all(tempAnimation.getAnimations().map((animation) => animation.finished)).then(() => {
+        tempAnimation.style = `display: none;`
+    })
 }
 
 function getPrevAndNextIndex(selectedIndex, workoutSelectLength) {
