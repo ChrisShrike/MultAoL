@@ -12,7 +12,7 @@ let disableClick = false;
 
 function getContent(index) {
     var contents = document.getElementsByClassName("content");
-    for(let i = 0; i <= maxIndex; ++i) {
+    for (let i = 0; i <= maxIndex; ++i) {
         contents[i].style = "display: none";
     }
 
@@ -73,98 +73,98 @@ $(document).ready(function() {
 
     createStartAndEndProfile();
 
-    function animateRight(){
+    function animateRight() {
         let triggerAnimate = true;
         $('.profile a img').animate({
-            width: defaultWidth,
-            height: defaultHeight,
-        }, 500, "swing",
-        function() {
-            if (triggerAnimate){
-                triggerAnimate = false;
-                $('.profile').animate({
-                    right: "-=" + profileWidth,
-                }, 500, "swing",
-                function() {
-                    // console.log($(this).index());
-                    $(this).css("right", starterRight);
-                    
-                    if ($(this).index() === (selectedIndex)){
-
-                        $(this).children("a").children("img").animate({
-                            width: defaultHeight * selectedMultiplier,
-                            height: defaultWidth * selectedMultiplier,
+                width: defaultWidth,
+                height: defaultHeight,
+            }, 500, "swing",
+            function() {
+                if (triggerAnimate) {
+                    triggerAnimate = false;
+                    $('.profile').animate({
+                            right: "-=" + profileWidth,
                         }, 500, "swing",
                         function() {
-                            disableClick = false;
-                            console.log(disableClick);
-                            // triggerAnimate = true;
+                            // console.log($(this).index());
+                            $(this).css("right", starterRight);
+
+                            if ($(this).index() === (selectedIndex)) {
+
+                                $(this).children("a").children("img").animate({
+                                        width: defaultWidth * selectedMultiplier,
+                                        height: defaultHeight * selectedMultiplier,
+                                    }, 500, "swing",
+                                    function() {
+                                        disableClick = false;
+                                        console.log(disableClick);
+                                        // triggerAnimate = true;
+                                    });
+                            }
+
+                            if ($(this).index() === maxIndex + 3) {
+                                removeElement($(this));
+                            }
+
+                            if ($(this).index() === maxIndex) {
+                                addStart($(this));
+                            }
+
+
                         });
-                    }
-    
-                    if ($(this).index() === maxIndex + 3) {
-                        removeElement($(this));
-                    }
-    
-                    if ($(this).index() === maxIndex) {
-                        addStart($(this));
-                    }
-                    
-    
-                });
-            }
-        });
+                }
+            });
     }
 
-    function animateLeft(){
+    function animateLeft() {
         let triggerAnimate = true;
         let shouldDelete = true;
 
         $('.profile a img').animate({
-            width: defaultWidth,
-            height: defaultHeight,
-        }, 500, "swing",
-        function() {
+                width: defaultWidth,
+                height: defaultHeight,
+            }, 500, "swing",
+            function() {
 
-            if (triggerAnimate){
-                triggerAnimate = false;
-                $('.profile').animate({
-                    right: "+=" + profileWidth,
-                }, 500, "swing",
-                function() {
-                    // console.log($(this).index());
-                    $(this).css("right", starterRight);
-                    
-                    if ($(this).index() === (selectedIndex + 1)){
-
-                        $(this).children("a").children("img").animate({
-                            width: defaultWidth * selectedMultiplier,
-                            height: defaultHeight * selectedMultiplier,
+                if (triggerAnimate) {
+                    triggerAnimate = false;
+                    $('.profile').animate({
+                            right: "+=" + profileWidth,
                         }, 500, "swing",
                         function() {
-                            disableClick = false;
-                            console.log(disableClick);
-                            // triggerAnimate = true;
+                            // console.log($(this).index());
+                            $(this).css("right", starterRight);
+
+                            if ($(this).index() === (selectedIndex + 1)) {
+
+                                $(this).children("a").children("img").animate({
+                                        width: defaultWidth * selectedMultiplier,
+                                        height: defaultHeight * selectedMultiplier,
+                                    }, 500, "swing",
+                                    function() {
+                                        disableClick = false;
+                                        console.log(disableClick);
+                                        // triggerAnimate = true;
+                                    });
+                            }
+
+                            if ($(this).index() === 0 && shouldDelete) {
+                                shouldDelete = false;
+                                removeElement($(this));
+                            }
+
+                            if ($(this).index() === 1) {
+                                addEnd($(this));
+                            }
+
+
                         });
-                    }
-    
-                    if ($(this).index() === 0 && shouldDelete) {
-                        shouldDelete = false;
-                        removeElement($(this));
-                    }
-    
-                    if ($(this).index() === 1) {
-                        addEnd($(this));
-                    }
-                    
-    
-                });
-            }
-        });
+                }
+            });
     }
 
     function moveProfileRight() {
-        if (!disableClick){
+        if (!disableClick) {
             disableClick = true;
             decrementIndex();
             console.log("Animate Right");
@@ -199,11 +199,11 @@ $(document).ready(function() {
     function moveProfileLeft() {
         // setInterval();
         // currentIndex++;
-        if (!disableClick){
+        if (!disableClick) {
             disableClick = true;
             incrementIndex();
-    
-    
+
+
             console.log("Animate Left");
             animateLeft();
             getContent(currentIndex);
@@ -212,21 +212,21 @@ $(document).ready(function() {
             //     }, 500, "swing",
             //     function() {
             //         $('.profile').css("right", starterRight);
-    
+
             //         // console.log(currentIndex);
             //         // console.log($(this).index() === 3);
-    
+
             //         if ($(this).index() === 0 && deleted) {
             //             deleted = false;
             //             removeElement($(this));
             //         }
-    
+
             //         if ($(this).index() === 1) {
             //             addEnd($(this));
             //         }
-                    
+
             //         disableClick = false;
-    
+
             //     });
         }
 
