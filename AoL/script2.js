@@ -1,4 +1,4 @@
-const ANIMATION_DURATION = 100;
+const ANIMATION_DURATION = 200;
 const IMAGES = ['img/example1.jpg', 'img/example2.jpg', 'img/example3.jpeg', 'img/example4.jpg', 'img/ex1.png', 'img/ban1.png']
 
 
@@ -22,7 +22,7 @@ function loadWorkoutsSelection() {
         let prevIndex;
         ({ prevIndex, selectedIndex } = getPrevAndNextIndex(selectedIndex, workoutSelect.length));
 
-        animateSlider(workoutSelect, selectedIndex, prevIndex);
+        animateSlider(workoutSelect);
         animateContent(workoutInfo, workoutSelect[selectedIndex], (currentIndex + 1) % IMAGES.length);
 
         workoutSelect[0].innerHTML = `<img src="${IMAGES[currentIndex % 6]}" alt="workout"></img>`
@@ -31,7 +31,7 @@ function loadWorkoutsSelection() {
 
         workoutSelect[0].style = "height: 70%;";
         workoutSelect[1].style = "height: 100%;";
-        workoutSelect[2].style = "";
+        workoutSelect[2].style = "height: 70%;";
     };
 
     PREV_BTN.onclick = function(e) {
@@ -78,37 +78,34 @@ function initWorkoutSelectImages(workoutSelect, selectedIndex) {
 }
 
 function animateContent(workoutInfo, workoutSelect, selectedIndex) {
-    console.log(selectedIndex);
-
     workoutInfo.animate(
         [
-            { opacity: 0 },
+            { opacity: 0.25 },
             { opacity: 0.5 },
+            { opacity: 0.75 },
             { opacity: 1 },
         ],
         { duration: 300 }
     );
 
     workoutInfo.innerHTML = `<img src="${IMAGES[selectedIndex]}" class="bg-img"></img>`;
-    let currentImage = new Image();
-    // currentImage.src = workoutSelect.children[0].w;
     workoutInfo.innerHTML += `<p>${workoutSelect.children[0].width}</p>`;
 }
 
-function animateSlider(workoutSelect, selectedIndex, prevIndex) {
+function animateSlider(workoutSelect) {
     workoutSelect[0].animate(
         [
-            { transform: "translateX(7.5em)", height: "100%" },
+            { transform: "translateX(100px)", height: "100%" },
             { height: "90%" },
             { height: "80%" },
             { height: "70%" },
         ],
-        { duration: ANIMATION_DURATION}
+        { duration: ANIMATION_DURATION }
     );
 
     workoutSelect[2].animate(
         [
-            { transform: "translateX(7.5em)", opacity: 0.2 },
+            { transform: "translateX(100px)", opacity: 0.2 },
             { opacity: 0.5 },
             { opacity: 0.7 },
             { opacity: 1 },
@@ -117,14 +114,11 @@ function animateSlider(workoutSelect, selectedIndex, prevIndex) {
     );
 
     workoutSelect[1].animate([
-        { transform: "translateX(7.5em)", height: "70%" },
+        { transform: "translateX(100px)", height: "70%" },
         { height: "80%" },
         { height: "90%" },
         { height: "100%" },
     ], { duration: ANIMATION_DURATION});
-
-    workoutSelect[selectedIndex].style = "position: relative; right: 7.5em;";
-    workoutSelect[prevIndex].style = "position: relative; right: 7.35em";
 }
 
 function getPrevAndNextIndex(selectedIndex, workoutSelectLength) {
