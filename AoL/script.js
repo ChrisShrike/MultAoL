@@ -1,6 +1,6 @@
 let currentIndex = 0;
 const selectedIndex = 2;
-const maxIndex = 3;
+const maxIndex = 5;
 const profileWidth = 110;
 const starterRight = 160;
 const defaultWidth = 100;
@@ -11,23 +11,67 @@ const selectedMultiplier = 1.5;
 let disableClick = false;
 
 function getContent(index) {
-    var contents = document.getElementsByClassName("content");
-    for (let i = 0; i <= maxIndex; ++i) {
-        contents[i].style = "display: none";
-    }
+    // var contents = document.getElementsByClassName("content");
+    // for (let i = 0; i <= maxIndex; ++i) {
+    //     contents[i].style = "display: none";
+    // }
 
-    contents[index].style = "display: initial";
+    // contents[index].style = "display: initial";
 }
 
 // window.onload = getContent;
 
 $(document).ready(function() {
     console.log("ready!");
+
+    // Not Work
+    // getContent(selectedIndex);
+
+
     // $('.profile').on('click', function() {
     //     // $(this).toggleClass("moveRight");
     //     // moveProfile();
 
     // })
+
+    callbackProfile();
+
+    function callbackProfile() {
+        $('.profile').unbind('click').bind('click', function() {
+            // $(this).toggleClass("moveRight");
+            // moveProfile();
+            // console.log('index is ' + $(this).parent().parent().parent().parent().index());
+            // console.log('index is ' + $(this).parent().parent().parent().parent().text());
+            console.log("Before");
+            console.log("Clicked: " +
+                $(this).data("id"));
+            // console.log("Selected: " +
+            //     selectedIndex)
+            // console.log("Current: " + currentIndex)
+            // console.log("Total: " + (currentIndex - $(this).data("id")))
+            // console.log("Max: " +
+            //     maxIndex)
+            // console.log("Total: " + ((selectedIndex + currentIndex) % (maxIndex)))
+            // console.log((($(this).data("id")) !== ((selectedIndex + currentIndex) % (maxIndex))));
+
+            let id = $(this).data("id");
+            let current = ((selectedIndex + currentIndex) % (maxIndex + 1));
+            console.log(id + " vs " + current)
+            if ((id + 0) !== (current + 0)) {
+
+                if ((id > current && id < current + (maxIndex / 2)) ||
+                    (id >= (current + 1) % (maxIndex + 1) && id < ((current + 1) % (maxIndex + 1)) + (maxIndex / 2))) {
+                    moveProfileLeft();
+                } else {
+                    moveProfileRight();
+                }
+            } else {
+                console.log("..")
+            }
+
+            // console.log($(this).data("id"));
+        })
+    }
 
     $('#toggleMove').on('click', function() {
         // $('.profile').toggleClass("moveRight");
@@ -54,6 +98,7 @@ $(document).ready(function() {
         } else {
             currentIndex--;
         }
+        console.log(currentIndex)
     }
 
     function incrementIndex() {
@@ -97,7 +142,7 @@ $(document).ready(function() {
                                     }, 500, "swing",
                                     function() {
                                         disableClick = false;
-                                        console.log(disableClick);
+                                        // console.log(disableClick);
                                         // triggerAnimate = true;
                                     });
                             }
@@ -182,12 +227,14 @@ $(document).ready(function() {
         $newProfile = $profile.clone();
         $newProfile.css("right", starterRight);
         $(".profile-select").prepend($newProfile);
+        callbackProfile();
     }
 
     function addEnd($profile) {
         $newProfile = $profile.clone();
         $newProfile.css("right", starterRight);
         $(".profile-select").append($newProfile);
+        callbackProfile();
     }
 
     // function selectedProfile($profile){

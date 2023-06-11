@@ -10,10 +10,13 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="script.js"></script>
 </head>
 
-<body onload="getContent(2);">
+<!-- Taruh di script js bagian document.ready (cek dokumentasi) -->
+
+<body onload="">
 
     <div class="contents">
         <div class="content">
@@ -31,33 +34,56 @@
     </div>
 
     <div class="profile-container d-flex justify-content-center">
-        <div class="profile-box flex-fill" style="">
-
+        <div class="profile-box flex-fill d-flex flex-row-reverse" style="">
+            <div class=" profile-button">
+                <a href="#" class="" id="decrementButton">
+                    <div class="profile-button d-flex justify-content-center flex-column">
+                        <i class="large material-icons">arrow_back</i>
+                    </div>
+                </a>
+            </div>
         </div>
         <div class="profile-select d-flex  justify-content-start  ">
-            <div class="profile profile-transition" data-id="0" data-position="0">
+            <div class="profile profile-transition" data-id="0">
                 <a href="">
-                    <img src="img/example1.jpg" alt="">
+                    <img src="img/jumpJackBG.png" alt="">
                 </a>
             </div>
-            <div class="profile profile-transition  " data-id="1" data-position="0">
+            <div class="profile profile-transition  " data-id="1">
                 <a href="">
-                    <img src="img/example2.jpg" alt="">
+                    <img src="img/mornWalkBG.png" alt="">
                 </a>
             </div>
-            <div class="profile profile-transition selected-profile" data-id="2" data-position="0">
+            <div class="profile profile-transition selected-profile" data-id="2">
                 <a href="">
-                    <img src="img/example3.jpeg" alt="">
+                    <img src="img/plankBG.png" alt="">
                 </a>
             </div>
-            <div class="profile profile-transition" data-id="3" data-position="0">
+            <div class="profile profile-transition " data-id="3">
                 <a href="">
-                    <img src="img/example4.jpg" alt="">
+                    <img src="img/pushupBG.png" alt="">
                 </a>
             </div>
-        </div>
-        <div class="profile-box flex-fill ">
+            <div class="profile profile-transition" data-id="4">
+                <a href="">
+                    <img src="img/squatBG.png" alt="">
+                </a>
+            </div>
+            <div class="profile profile-transition" data-id="5">
+                <a href="">
+                    <img src="img/yogaBG.png" alt="">
+                </a>
+            </div>
 
+        </div>
+        <div class="profile-box flex-fill d-flex">
+            <div class=" profile-button">
+                <a href="#" class="" id="incrementButton">
+                    <div class="profile-button d-flex justify-content-center flex-column">
+                        <i class="large material-icons">arrow_forward</i>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 
