@@ -19,8 +19,7 @@ function loadWorkoutsSelection() {
     NEXT_BTN.onclick = function(e) {
         currentIndex++;
 
-        let prevIndex;
-        ({ prevIndex, selectedIndex } = getPrevAndNextIndex(selectedIndex, workoutSelect.length));
+        selectedIndex = getNextImageIndex(selectedIndex, workoutSelect.length);
 
         animateSlider(workoutSelect);
         animateContent(workoutInfo, workoutSelect[selectedIndex], (currentIndex + 1) % IMAGES.length);
@@ -121,13 +120,6 @@ function animateSlider(workoutSelect) {
     ], { duration: ANIMATION_DURATION});
 }
 
-function getPrevAndNextIndex(selectedIndex, workoutSelectLength) {
-    let prevIndex = selectedIndex;
-    if (selectedIndex >= workoutSelectLength - 1) {
-        selectedIndex = 0;
-        prevIndex = workoutSelectLength - 1;
-    } else {
-        selectedIndex++;
-    }
-    return { prevIndex, selectedIndex };
+function getNextImageIndex(selectedIndex, workoutSelectLength) {
+    return (selectedIndex >= workoutSelectLength - 1) ? 0 : ++selectedIndex;
 }
