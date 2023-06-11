@@ -61,6 +61,11 @@ p {
     border: solid;
     background-color: grey; */
     /* z-index: 1; */
+    position: absolute;
+    top: 50%;
+    /* left: 50%; */
+    width: 100%;
+    height: 400px;
 }
 
 .profile-select {
@@ -71,7 +76,7 @@ p {
     /* border-color: black;
     border: solid; */
     /* width: fit-content; */
-    width: 300px;
+    width: 350px;
     /* padding-right: 50px; */
     /* z-index: -1; */
 }
@@ -81,20 +86,35 @@ p {
     border-color: antiquewhite;
     border: solid;
     width: auto;
+    height: 200px;
     z-index: 2;
 }
 
 .profile {
     transform: skew(20deg);
     /* background: #555; */
-    transition: all 0.5s ease;
     cursor: pointer;
     position: relative;
     /* padding: 0 30px; */
-    width: 100px;
-    height: 200px;
-    right: 50px;
+    /* width: 100px; */
+    margin-top: auto; 
+    width: fit-content;
+    height: 300px;
+    right: 160px;
     z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.profile-transition {
+    transition: width 0.5s ease;
+}
+
+.selected-profile a img {
+    width: 150px;
+    height: 300px;
+    
 }
 
 .profile a {
@@ -115,6 +135,11 @@ p {
     height: 200px;
     border-style: solid;
     border-color: #555;
+    margin-top: auto;
+}
+
+.profile a {
+    margin-top: auto;
 }
 
 #hexagon {
