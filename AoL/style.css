@@ -44,11 +44,28 @@ p {
 #next-btn {
     position: absolute;
     right: 1.5em;
+    background-color: transparent;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    padding: 2em;
+    color: white;
 }
 
 #previous-btn {
     position: absolute;
     left: 1em;
+    background-color: transparent;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    padding: 2em;
+    color: white;
+}
+
+#next-btn:hover, #previous-btn:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10%;
 }
 
 .workout-select, .temp-animation-right, .temp-animation-left {
@@ -67,6 +84,7 @@ p {
 
 .content {
     display: none;
+    color: white;
 }
 
 .tab {

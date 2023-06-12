@@ -4,20 +4,15 @@ const BG_IMAGES = ['img/bg/jumping-jacks.jpg', 'img/bg/morning-walk.jpg', 'img/b
 
 function loadWorkoutsSelection() {
     let currentIndex = 1;
-    // let charSelect = document.getElementById("char-select");
     let workoutSelect = document.getElementsByClassName("workout-select");
-    let workoutInfo = document.getElementById("workout-info"); 
     let mainElement = document.getElementById("main");
-    let bodyElem = document.getElementsByTagName("body")[0]
     let content = document.getElementsByClassName("content");
     let selectedIndex = Math.ceil((workoutSelect.length - 1) / 2);
     
     initWorkoutSelectImages(workoutSelect, selectedIndex);
 
-    // workoutInfo.innerHTML = `<img src="${IMAGES[selectedIndex]}" class="bg-img"></img>`;
     content[selectedIndex].style = "display: initial";
-    bodyElem.style = `background-image: url(${BG_IMAGES[selectedIndex]}); background-size: cover;`;
-    mainElement.style = `backdrop-filter: blur(5px);-webkit-backdrop-filter: blur(5px);`;
+    mainElement.style = `background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${BG_IMAGES[selectedIndex]}); background-size: cover`;
 
 
     const NEXT_BTN = document.getElementById("next-btn");
@@ -26,12 +21,9 @@ function loadWorkoutsSelection() {
     NEXT_BTN.onclick = function(e) {
         currentIndex++;
 
-        let prevIndex;
-        ({ prevIndex, selectedIndex } = getPrevAndNextIndex(selectedIndex, workoutSelect.length));
-
         console.log(currentIndex);
         animateSlider(workoutSelect, currentIndex, "left");
-        animateContent(content, bodyElem, (currentIndex) % IMAGES.length, (currentIndex - 1) % IMAGES.length, "left");
+        animateContent(content, mainElement, (currentIndex) % IMAGES.length, (currentIndex - 1) % IMAGES.length, "left");
 
         for(let i = 0; i < workoutSelect.length; ++i) {
             Promise.all(workoutSelect[i].getAnimations().map((animation) => animation.finished)).then(() => {
@@ -53,12 +45,9 @@ function loadWorkoutsSelection() {
             currentIndex = IMAGES.length;
         }
 
-        // let prevIndex;
-        // ({ prevIndex, selectedIndex } = getPrevAndNextIndex(selectedIndex, workoutSelect.length));
-
         console.log(currentIndex);
         animateSlider(workoutSelect, currentIndex, "right");
-        animateContent(content, bodyElem, (currentIndex + 1) % IMAGES.length, (currentIndex) % IMAGES.length, "right");
+        animateContent(content, mainElement, (currentIndex + 1) % IMAGES.length, (currentIndex) % IMAGES.length, "right");
 
         for(let i = 0; i < workoutSelect.length; ++i) {
             Promise.all(workoutSelect[i].getAnimations().map((animation) => animation.finished)).then(() => {
@@ -98,15 +87,11 @@ function animateContent(contents, elem, index, prevIndex, direction) {
     elem.animate(
         [
             { opacity: 0.25 },
-            // { opacity: 0.5 },
             { opacity: 0.75 },
             { opacity: 1 },
         ],
         { duration: ANIMATION_DURATION }
     );
-
-    // workoutInfo.innerHTML = `<img src="${IMAGES[selectedIndex]}" class="bg-img"></img>`;
-    // workoutInfo.innerHTML += `<p>${workoutSelect.children[0].width}</p>`;
 
     if (direction === "left") {
         contents[index].style = "display: initial";
@@ -116,7 +101,7 @@ function animateContent(contents, elem, index, prevIndex, direction) {
         contents[index].style = "display: none";
     }
 
-    elem.style = `background-image: url(${BG_IMAGES[index]}); background-size: cover`
+    elem.style = `background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${BG_IMAGES[index]}); background-size: cover`
 }
 
 function animateSlider(workoutSelect, currentIndex, direction) {
@@ -195,15 +180,4 @@ function animateSlider(workoutSelect, currentIndex, direction) {
     Promise.all(tempAnimation.getAnimations().map((animation) => animation.finished)).then(() => {
         tempAnimation.style = `display: none;`
     })
-}
-
-function getPrevAndNextIndex(selectedIndex, workoutSelectLength) {
-    let prevIndex = selectedIndex;
-    if (selectedIndex >= workoutSelectLength - 1) {
-        selectedIndex = 0;
-        prevIndex = workoutSelectLength - 1;
-    } else {
-        selectedIndex++;
-    }
-    return { prevIndex, selectedIndex };
 }
