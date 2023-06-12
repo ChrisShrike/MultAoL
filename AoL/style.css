@@ -7,13 +7,104 @@ body {
     padding: 0;
     overflow-y: hidden;
 }
+.content h1 {
+    margin-top: 0;
+}
+
+
+h1 {
+    font-size: 6.5em;
+}
 
 body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0;
     /* background-color: #ff9b70; */
     background-color: #ffffff;
-    overflow: hidden;
+}
+
+p {
+    margin: 0;
+}
+
+.bg-img {
+    background-size: cover;
+    max-width: 100%;
+}
+
+#char-select, #select-images {
+    display: flex;
+    height: 20vh;
+    justify-content: center;
+    align-items: last baseline;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+#next-btn {
+    position: absolute;
+    right: 1.5em;
+    background-color: transparent;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    padding: 2em;
+    color: white;
+}
+
+#previous-btn {
+    position: absolute;
+    left: 1em;
+    background-color: transparent;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    padding: 2em;
+    color: white;
+}
+
+#next-btn:hover, #previous-btn:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10%;
+}
+
+.workout-select, .temp-animation-right, .temp-animation-left {
+    transform: skew(-5deg);
+    height: 70%;
+    background: linear-gradient(225deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 35%, rgba(40,47,48,1) 100%);
+}
+
+.morning-walk {
+    background-image: url("img/bg/morning-walk.jpg");
+    background-size: cover;
+}
+
+.content {
+    display: none;
+    color: white;
+}
+
+.tab {
+    display: inline-block;
+    margin-left: 40px;
+}
+
+.workout-select img, .temp-animation-right img, .temp-animation-left img {
+    width: 100px;
+    height: 100%;
+    background-size: contain;
+}
+
+#workout-info {
+    height: 80vh;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+}
+
+.carousel-item img {
+    background-color: white;
+    padding: 10px 0 70px 0;
 }
 
 .profile-container {
