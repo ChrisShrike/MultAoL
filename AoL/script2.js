@@ -1,5 +1,5 @@
 const ANIMATION_DURATION = 100;
-const IMAGES = ['img/jumpJack.png', 'img/mornWalk.png', 'img/Plank.png', 'img/pushup.png', 'img/squat.png', 'img/yoga.png']
+const IMAGES = ['img/Frame 1.png', 'img/Frame 2.png', 'img/Frame 3.png', 'img/Frame 4.png', 'img/Frame 5.png', 'img/Frame 6.png']
 const BG_IMAGES = ['img/bg/jumping-jacks.jpg', 'img/bg/morning-walk.jpg', 'img/bg/planks.jpg', 'img/bg/planks.jpg', 'img/bg/planks.jpg', 'img/bg/planks.jpg']
 
 function loadWorkoutsSelection() {
