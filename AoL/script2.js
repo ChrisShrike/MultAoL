@@ -1,4 +1,4 @@
-const ANIMATION_DURATION = 100;
+const ANIMATION_DURATION = 150;
 const IMAGES = ['img/Frame 1.png', 'img/Frame 2.png', 'img/Frame 3.png', 'img/Frame 4.png', 'img/Frame 5.png', 'img/Frame 6.png']
 const BG_IMAGES = ['img/bg/jumping-jacks.jpg', 'img/bg/morning-walk.jpg', 'img/bg/planks.jpg', 'img/bg/planks.jpg', 'img/bg/planks.jpg', 'img/bg/planks.jpg']
 
@@ -21,7 +21,6 @@ function loadWorkoutsSelection() {
     NEXT_BTN.onclick = function(e) {
         currentIndex++;
 
-        console.log(currentIndex);
         animateSlider(workoutSelect, currentIndex, "left");
         animateContent(content, mainElement, (currentIndex) % IMAGES.length, (currentIndex - 1) % IMAGES.length, "left");
 
@@ -106,7 +105,7 @@ function animateContent(contents, elem, index, prevIndex, direction) {
 
 function animateSlider(workoutSelect, currentIndex, direction) {
     let initialRightPosition = (direction === "left") ? "100px" : "-100px";
-    let finalRightPosition = (direction === "left") ? "70px" : "-70px";
+    let finalRightPosition = (direction === "left") ? "55px" : "-55px";
     if (direction === "left") {
         workoutSelect[0].animate(
             [
@@ -170,9 +169,9 @@ function animateSlider(workoutSelect, currentIndex, direction) {
     tempAnimation.style = "display: initial;";
 
     tempAnimation.animate([
-        {transform: `translateX(${initialRightPosition})`, display: "initial", opacity: 0.1, right: initialRightPosition},
-        {opacity: 0.25},
-        {opacity: 0.5},
+        {transform: `translateX(${initialRightPosition})`, display: "initial", opacity: 0.1, right: (direction === "left") ? "25px" : "25px"},
+        {opacity: 0.25, right: (direction === "left") ? "50px" : "-50px"},
+        {opacity: 0.5, right: (direction === "left") ? "75px" : "-75px"},
         {opacity: 1, right: finalRightPosition, position: "relative", display: "none"},
     ],
     {duration: ANIMATION_DURATION});
