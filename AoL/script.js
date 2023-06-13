@@ -1,4 +1,4 @@
-let currentIndex = 0;
+let currentIndex = 2;
 const selectedIndex = 2;
 const maxIndex = 5;
 const profileWidth = 110;
@@ -6,17 +6,23 @@ const starterRight = 160;
 const defaultWidth = 100;
 const defaultHeight = 200;
 const selectedMultiplier = 1.5;
+const BG_IMAGES = ['img/bg/jumping-jacks.jpg', 'img/bg/morning-walk.jpg', 'img/bg/planks.jpg', 'img/bg/planks.jpg', 'img/bg/planks.jpg', 'img/bg/planks.jpg']
+
 
 
 let disableClick = false;
 
 function getContent(index) {
-    // var contents = document.getElementsByClassName("content");
-    // for (let i = 0; i <= maxIndex; ++i) {
-    //     contents[i].style = "display: none";
-    // }
+    console.log(index);
+    let mainElement = document.getElementById("contents");
+    mainElement.style = `background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${BG_IMAGES[index]}); background-size: cover`;
 
-    // contents[index].style = "display: initial";
+    var contents = document.getElementsByClassName("content");
+    for (let i = 0; i <= maxIndex; ++i) {
+        contents[i].style = "display: none";
+    }
+
+    contents[index].style = "display: initial";
 }
 
 // window.onload = getContent;
@@ -145,8 +151,6 @@ $(document).ready(function() {
                                         // let workoutSelect = document.getElementsByClassName("workout-select");
                                         let mainElement = document.getElementById("main");
                                         let content = document.getElementsByClassName("content");
-
-                                        animateContent(content, mainElement, (currentIndex), (currentIndex - 1), "left");
 
                                         // console.log(disableClick);
                                         // triggerAnimate = true;
