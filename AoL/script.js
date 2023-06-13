@@ -73,10 +73,10 @@ $(document).ready(function() {
         })
     }
 
-    $('#toggleMove').on('click', function() {
-        // $('.profile').toggleClass("moveRight");
-        moveProfileRight();
-    })
+    // $('#toggleMove').on('click', function() {
+    //     // $('.profile').toggleClass("moveRight");
+    //     moveProfileRight();
+    // })
 
     $('#incrementButton').on('click', function() {
         // $('.profile').toggleClass("moveRight");
@@ -142,6 +142,12 @@ $(document).ready(function() {
                                     }, 500, "swing",
                                     function() {
                                         disableClick = false;
+                                        // let workoutSelect = document.getElementsByClassName("workout-select");
+                                        let mainElement = document.getElementById("main");
+                                        let content = document.getElementsByClassName("content");
+
+                                        animateContent(content, mainElement, (currentIndex), (currentIndex - 1), "left");
+
                                         // console.log(disableClick);
                                         // triggerAnimate = true;
                                     });

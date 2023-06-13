@@ -3,67 +3,72 @@ const IMAGES = ['img/Frame 1.png', 'img/Frame 2.png', 'img/Frame 3.png', 'img/Fr
 const BG_IMAGES = ['img/bg/jumping-jacks.jpg', 'img/bg/morning-walk.jpg', 'img/bg/planks.jpg', 'img/bg/planks.jpg', 'img/bg/planks.jpg', 'img/bg/planks.jpg']
 
 function loadWorkoutsSelection() {
-    let currentIndex = 1;
-    let workoutSelect = document.getElementsByClassName("workout-select");
+    let currentIndexFunc = (currentIndex + selectedIndex) % (maxIndex+1);
+    // let workoutSelect = document.getElementsByClassName("workout-select");
     let mainElement = document.getElementById("main");
     let content = document.getElementsByClassName("content");
-    let selectedIndex = Math.ceil((workoutSelect.length - 1) / 2);
+    // let selectedIndex = Math.ceil((workoutSelect.length - 1) / 2);
     
-    initWorkoutSelectImages(workoutSelect, selectedIndex);
+    //  initWorkoutSelectImages(workoutSelect, selectedIndex);
 
+    console.log(selectedIndex);
     content[selectedIndex].style = "display: initial";
     mainElement.style = `background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${BG_IMAGES[selectedIndex]}); background-size: cover`;
 
 
-    const NEXT_BTN = document.getElementById("next-btn");
-    const PREV_BTN = document.getElementById("previous-btn");
+    // const NEXT_BTN = document.getElementById("next-btn");
+    // const PREV_BTN = document.getElementById("previous-btn");
 
-    NEXT_BTN.onclick = function(e) {
-        currentIndex++;
+    // NEXT_BTN.onclick = NextBtn();
 
-        animateSlider(workoutSelect, currentIndex, "left");
-        animateContent(content, mainElement, (currentIndex) % IMAGES.length, (currentIndex - 1) % IMAGES.length, "left");
-
-        for(let i = 0; i < workoutSelect.length; ++i) {
-            Promise.all(workoutSelect[i].getAnimations().map((animation) => animation.finished)).then(() => {
-                workoutSelect[i].innerHTML = `<img src="${IMAGES[(currentIndex + i - 1) % IMAGES.length]}" alt="workout"></img>`
-                workoutSelect[0].style = "height: 70%;";
-                workoutSelect[1].style = "height: 100%;";
-                workoutSelect[2].style = "height: 70%;";
-            })
-        }        
-
-        workoutSelect[0].style = "height: 70%;";
-        workoutSelect[1].style = "height: 100%;";
-        workoutSelect[2].style = "height: 70%;";
-    };
-
-    PREV_BTN.onclick = function(e) {
-        currentIndex--;
-        if (currentIndex <= 0) {
-            currentIndex = IMAGES.length;
-        }
-
-        console.log(currentIndex);
-        animateSlider(workoutSelect, currentIndex, "right");
-        animateContent(content, mainElement, (currentIndex + 1) % IMAGES.length, (currentIndex) % IMAGES.length, "right");
-
-        for(let i = 0; i < workoutSelect.length; ++i) {
-            Promise.all(workoutSelect[i].getAnimations().map((animation) => animation.finished)).then(() => {
-                workoutSelect[i].innerHTML = `<img src="${IMAGES[(currentIndex + i) <= 0 ? IMAGES.length : (currentIndex + i - 1) % IMAGES.length]}" alt="workout"></img>`
-                workoutSelect[0].style = "height: 70%;";
-                workoutSelect[1].style = "height: 100%;";
-                workoutSelect[2].style = "height: 70%;";
-            })
-        }        
-
-        workoutSelect[0].style = "height: 70%;";
-        workoutSelect[1].style = "height: 100%;";
-        workoutSelect[2].style = "height: 70%;";
-    };
+    // PREV_BTN.onclick = PrevBtn();
 
 
 }
+
+// function NextBtn(e) {
+//     currentIndexFunc++;
+
+//     animateSlider(workoutSelect, currentIndexFunc, "left");
+//     animateContent(content, mainElement, (currentIndexFunc) % IMAGES.length, (currentIndexFunc - 1) % IMAGES.length, "left");
+
+//     for(let i = 0; i < workoutSelect.length; ++i) {
+//         Promise.all(workoutSelect[i].getAnimations().map((animation) => animation.finished)).then(() => {
+//             workoutSelect[i].innerHTML = `<img src="${IMAGES[(currentIndexFunc + i - 1) % IMAGES.length]}" alt="workout"></img>`
+//             workoutSelect[0].style = "height: 70%;";
+//             workoutSelect[1].style = "height: 100%;";
+//             workoutSelect[2].style = "height: 70%;";
+//         })
+//     }        
+
+//     workoutSelect[0].style = "height: 70%;";
+//     workoutSelect[1].style = "height: 100%;";
+//     workoutSelect[2].style = "height: 70%;";
+// };
+
+// function PrevBtn (e) {
+//     currentIndexFunc--;
+//     if (currentIndexFunc <= 0) {
+//         currentIndexFunc = IMAGES.length;
+//     }
+
+//     console.log(currentIndexFunc);
+//     animateSlider(workoutSelect, currentIndexFunc, "right");
+//     animateContent(content, mainElement, (currentIndexFunc + 1) % IMAGES.length, (currentIndexFunc) % IMAGES.length, "right");
+
+//     for(let i = 0; i < workoutSelect.length; ++i) {
+//         Promise.all(workoutSelect[i].getAnimations().map((animation) => animation.finished)).then(() => {
+//             workoutSelect[i].innerHTML = `<img src="${IMAGES[(currentIndexFunc + i) <= 0 ? IMAGES.length : (currentIndexFunc + i - 1) % IMAGES.length]}" alt="workout"></img>`
+//             workoutSelect[0].style = "height: 70%;";
+//             workoutSelect[1].style = "height: 100%;";
+//             workoutSelect[2].style = "height: 70%;";
+//         })
+//     }        
+
+//     workoutSelect[0].style = "height: 70%;";
+//     workoutSelect[1].style = "height: 100%;";
+//     workoutSelect[2].style = "height: 70%;";
+// };
 
 function initWorkoutSelectImages(workoutSelect, selectedIndex) {
     for (let i = 0; i < workoutSelect.length; ++i) {
@@ -103,7 +108,7 @@ function animateContent(contents, elem, index, prevIndex, direction) {
     elem.style = `background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${BG_IMAGES[index]}); background-size: cover`
 }
 
-function animateSlider(workoutSelect, currentIndex, direction) {
+function animateSlider(workoutSelect, currentIndexFunc, direction) {
     let initialRightPosition = (direction === "left") ? "100px" : "-100px";
     let finalRightPosition = (direction === "left") ? "55px" : "-55px";
     if (direction === "left") {
@@ -163,7 +168,7 @@ function animateSlider(workoutSelect, currentIndex, direction) {
     }
 
     let tempAnimation = document.getElementsByClassName(`temp-animation-${direction}`)[0]
-    let tempImageIndex = (direction === "left") ? (currentIndex + 1) % IMAGES.length : (currentIndex - 1) % IMAGES.length
+    let tempImageIndex = (direction === "left") ? (currentIndexFunc + 1) % IMAGES.length : (currentIndexFunc - 1) % IMAGES.length
 
     tempAnimation.innerHTML = `<img src="${IMAGES[tempImageIndex]}" alt="workout"></img>`
     tempAnimation.style = "display: initial;";

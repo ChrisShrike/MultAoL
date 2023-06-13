@@ -21,6 +21,7 @@ body {
     margin: 0;
     /* background-color: #ff9b70; */
     background-color: #ffffff;
+    overflow-x: hidden;
 }
 
 p {
@@ -121,7 +122,7 @@ p {
 }
 
 .profile-select {
-    background-color: white;
+    /* background-color: white; */
     gap: 10px;
     /* padding-left: 50px; */
     /* position: absolute; */
