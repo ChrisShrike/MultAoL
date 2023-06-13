@@ -6,7 +6,7 @@ const starterRight = 160;
 const defaultWidth = 100;
 const defaultHeight = 200;
 const selectedMultiplier = 1.5;
-const BG_IMAGES = ['img/bg/jumping-jacks.jpg', 'img/bg/morning-walk.jpg', 'img/bg/planks.jpg', 'img/bg/planks.jpg', 'img/bg/planks.jpg', 'img/bg/planks.jpg']
+const BG_IMAGES = ['img/bg/jumping-jacks.jpg', 'img/bg/morning-walk.jpg', 'img/bg/planks.jpg', 'img/bg/pushUp.png', 'img/bg/yoga.jpg', 'img/bg/squat.jpg']
 
 
 
