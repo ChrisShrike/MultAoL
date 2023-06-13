@@ -75,14 +75,15 @@ p {
     background: linear-gradient(225deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 35%, rgba(40,47,48,1) 100%);
 }
 
-.morning-walk {
-    background-image: url("img/bg/morning-walk.jpg");
-    background-size: cover;
+.content {
+    flex-direction: column;
+    color: white;
+    align-items: center;
+    height: 100%;
 }
 
-.content {
-    display: none;
-    color: white;
+#contents {
+    height: 65vh;
 }
 
 .tab {

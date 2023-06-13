@@ -14,7 +14,7 @@ let disableClick = false;
 
 function getContent(index) {
     console.log(index);
-    let mainElement = document.getElementById("contents");
+    let mainElement = document.getElementsByTagName("body")[0];
     mainElement.style = `background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${BG_IMAGES[index]}); background-size: cover`;
 
     var contents = document.getElementsByClassName("content");
@@ -22,7 +22,7 @@ function getContent(index) {
         contents[i].style = "display: none";
     }
 
-    contents[index].style = "display: initial";
+    contents[index].style = "display: flex; color: white; padding: 2em; text-align: justify";
 }
 
 // window.onload = getContent;
