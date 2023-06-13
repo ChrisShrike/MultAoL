@@ -264,6 +264,7 @@ $(document).ready(function() {
             console.log("Animate Left");
             animateLeft();
             getContent(currentIndex);
+            // $(".contents")./ content[currentIndex];
             // $('.profile').animate({
             //         right: "+=" + profileWidth,
             //     }, 500, "swing",
