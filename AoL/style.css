@@ -115,7 +115,7 @@ p {
     background-color: grey; */
     /* z-index: 1; */
     position: absolute;
-    top: 50%;
+    top: 45%;
     /* left: 50%; */
     width: 100%;
     /* background-color: white; */
@@ -136,7 +136,7 @@ p {
 }
 
 .profile-box {
-    background-color: gray;
+    background-color: #101010;
     /* border-color: red; */
     border-color: #555555 !important;
     border: solid;
@@ -147,7 +147,7 @@ p {
 }
 
 .profile-button {
-    background-color: black;
+    background-color: #101010;
     width: fit-content;
     height: 100%;
     vertical-align: middle;
@@ -156,8 +156,13 @@ p {
 .profile-button a {
     height: 100%;
     text-decoration: none;
+
 }
 
+.profile-button i {
+    font-size: 100px !important;
+
+}
 .profile {
     transform: skew(20deg);
     /* background: #555; */
@@ -352,4 +357,23 @@ img {
     to {
         opacity: 1;
     }
+}
+
+.content h1 {
+    background-color: rgb(28, 28, 28, 0.7);
+    border-radius: 10px;
+    padding: 0px 10px 15px 10px;
+    /* border-color: rgb(41, 41, 41, 0.7); */
+    /* border-width: 10px; */
+    /* border-style: solid; */
+}
+
+.content p {
+    background-color: rgba(28, 28, 28, 0.7);
+    border-radius: 10px;
+    padding: 10px 10px 20px 10px;
+    font-size: 20px;
+    /* border-color: rgb(41, 41, 41, 0.7); */
+    /* border-width: 10px; */
+    /* border-style: solid; */
 }
